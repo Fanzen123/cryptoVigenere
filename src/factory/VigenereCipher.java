@@ -93,7 +93,7 @@ public class VigenereCipher implements ICipher {
 						break;
 					}
 					else if(word.equals(encoded.substring(i, i+length))) {
-						Sequence s = new Sequence(word, startIndex - i);
+						Sequence s = new Sequence(word, i - startIndex);
 						// System.out.println(s.name + s.space);
 						array.add(s);
 					}
@@ -102,10 +102,6 @@ public class VigenereCipher implements ICipher {
 		}
 		
 		return array;
-	}
-	
-	public ArrayList<Integer> findMultiple(ArrayList<Sequence> sequences) {
-		return null;
 	}
 	
 	public int findKey(ArrayList<Integer> multiples, ArrayList<Sequence> sequences) {
@@ -173,7 +169,16 @@ public class VigenereCipher implements ICipher {
 		return false ;
 	}
 	
-	class Sequence {
+	public HashMap<Integer, List<Integer>> findMultiple(ArrayList<Sequence> sequences) {
+		HashMap<Integer, List<Integer>> list =new HashMap<Integer, List<Integer>>();
+	   for (int i=0;i<sequences.size();i++)
+	   {
+		list.put(sequences.get(i).space,diviseurInteger(sequences.get(i).space));
+	   }
+		return list;
+	}
+	
+	public class Sequence {
 		public String name;
 		public int space;
 		public Sequence(String name, int space) {
