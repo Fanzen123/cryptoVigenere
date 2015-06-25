@@ -77,20 +77,48 @@ public class VigenereCipher implements ICipher {
 	}
 	
 	public ArrayList<Sequence> findSequence(String encoded) {
-		return null;
+		ArrayList<Sequence> array = new ArrayList<Sequence>();
+		String word;
+		for(int length = 3; length < 7; length++) {
+			for(int startIndex = 0; startIndex < encoded.length(); startIndex++) {
+				if(encoded.length() < (startIndex+length)) 
+					break;
+				word = encoded.substring(startIndex, startIndex + length);
+				// System.out.println(word);
+				for(int i = startIndex + 1; i < encoded.length()-length; i++) {
+					// System.out.println(i + "=>" + (i+length));
+					if(encoded.length() < (i+length)) {
+						break;
+					}
+					else if(word.equals(encoded.substring(i, i+length))) {
+						Sequence s = new Sequence(word, startIndex - i);
+						// System.out.println(s.name + s.space);
+						array.add(s);
+					}
+				}
+			}
+		}
+		
+		return array;
 	}
 	
 	public ArrayList<Integer> findMultiple(ArrayList<Sequence> sequences) {
 		return null;
 	}
 	
-	public int findMultiple(ArrayList<Integer> multiples, ArrayList<Sequence> sequences) {
+	public int findKey(ArrayList<Integer> multiples, ArrayList<Sequence> sequences) {
 		return 0;
 	}
 	
 	class Sequence {
 		public String name;
 		public int space;
+		public Sequence(String name, int space) {
+			super();
+			this.name = name;
+			this.space = space;
+		}
+		
 	}
 
 }
