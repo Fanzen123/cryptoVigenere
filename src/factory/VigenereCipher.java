@@ -1,13 +1,9 @@
-package esgi.al1.cipher;
+package factory;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-<<<<<<< HEAD
 public class VigenereCipher implements ICipher {
-=======
-public class VigenereCipher {
->>>>>>> origin/master
 
 	private final static String alphabet = "abcdefghijklmnopqrstuvwxyz";
 	
@@ -19,7 +15,6 @@ public class VigenereCipher {
 			 keys.add(alphabet.toUpperCase().charAt((int) (Math.random() * 25)));
 		 }
 		 return keys;
-<<<<<<< HEAD
 	}
 	
 	public String decode(String encoded, ArrayList<Character> key){
@@ -33,46 +28,17 @@ public class VigenereCipher {
 				transpose = 0;
 		}
 		return decoded.toString();
-=======
->>>>>>> origin/master
 	}
 	
-	
-	
-	public String decode(String encoded, ArrayList<Character> key){
-		int keysIndex = 0;
-		StringBuilder decoded = new StringBuilder();
-		int transpose;
-		for(int i = 0; i <encoded.length(); i++){
-			transpose = key.get(i);
-			decoded.append(((char)((encoded.charAt(i) - transpose + 26) % 26 + 'A')));
-			if(transpose == key.size())
-				transpose = 0;
-		}
-		return decoded.toString();
-	}
-
-	public String encode(String encoded, ArrayList<Character> key){
-		int keysIndex = 0;
-		StringBuilder decoded = new StringBuilder();
-		int transpose;
-		for(int i = 0; i <encoded.length(); i++){
-			transpose = key.get(i);
-			decoded.append(((char)((encoded.charAt(i) + transpose + 26) % 26 + 'A')));
-			if(transpose == key.size())
-				transpose = 0;
-		}
-		return decoded.toString();
-	}
-
-	/*public String encode(String message, String key) {
+	@Override
+	public String encode(String message, String key) {
 		StringBuilder builderKey = new StringBuilder();
 		HashMap<Character, Character> associateKey = new HashMap<Character, Character>();
 		
-		
+		/*
 		 * Create tab
 		 *  key => value == character from message => character value from key
-		 
+		 */
 		int o = 0;
 		for(int i = 0; i < message.length();i++) {
 			if(message.charAt(i) == 32) {
@@ -103,9 +69,7 @@ public class VigenereCipher {
 	    
 		return builderKey.toString();
 	}
-*/
 
-<<<<<<< HEAD
 	@Override
 	public String findKey(String messageEncoded) {
 		// TODO Auto-generated method stub
@@ -128,7 +92,5 @@ public class VigenereCipher {
 		public String name;
 		public int space;
 	}
-=======
->>>>>>> origin/master
 
 }
