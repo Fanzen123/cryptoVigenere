@@ -2,6 +2,8 @@ package factory;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map.Entry;
 
 public class VigenereCipher implements ICipher {
 
@@ -108,6 +110,67 @@ public class VigenereCipher implements ICipher {
 	
 	public int findKey(ArrayList<Integer> multiples, ArrayList<Sequence> sequences) {
 		return 0;
+	}
+	
+	public List<Integer> diviseurInteger (int nbre)
+	{
+		List<Integer> listDiviseur =new ArrayList<>();
+		if (nbre%2!=0)
+		{
+			listDiviseur.add(nbre);
+		}
+		for (int i=2;i<nbre/2 +1 ;i++)
+		{
+			if (nbre%i==0)
+			{
+				listDiviseur.add(i);
+				
+			}
+		}
+		
+		return listDiviseur;
+	}
+	
+	public int lengthkey (HashMap<Integer, List<Integer>> listInteger)
+	{
+		for(Entry<Integer, List<Integer>> entry : listInteger.entrySet()) {
+		   for (int i=0;i< entry.getValue().size();i++)
+		   {
+			   if (searchInteger(entry.getValue().get(i), listInteger, i)==true)
+			   {
+				   return entry.getValue().get(i);
+				  
+			   }
+		   }
+		    
+		}
+
+		return 0;
+	}
+	
+	
+	public boolean searchInteger(int nbre,HashMap<Integer, List<Integer>> listInteger ,int index)
+	{
+		int occurence=0;
+		for(Entry<Integer, List<Integer>> entry : listInteger.entrySet()) 
+		{
+			
+			for (int k=0 ;k<entry.getValue().size();k++)
+			{
+				
+				if (entry.getValue().get(k)== nbre)
+				{
+					occurence++;					
+				}
+				
+			}	
+		}
+		if (occurence==listInteger.size())
+		{
+			return true;
+			
+		}
+		return false ;
 	}
 	
 	class Sequence {
